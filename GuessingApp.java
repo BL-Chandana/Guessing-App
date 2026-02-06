@@ -1,44 +1,51 @@
+
+
 import java.util.Random;
 
-public class GuessingApp {
+/**
+ * Use Case 1: Game Initialization
+ */
+class GameConfig {
 
-    // Game configuration constants
     private final int MIN = 1;
     private final int MAX = 100;
-    private final int MAX_ATTEMPTS = 5;
-
-    // Target number to guess
+    private final int MAX_ATTEMPTS = 7;
+    private final int MAX_HINTS = 3;
     private int targetNumber;
 
-    // ✅ Constructor – SAME name as class
-    public GuessingApp() {
+    // Constructor
+    public GameConfig() {
         Random random = new Random();
-        targetNumber = random.nextInt(MAX - MIN + 1) + MIN;
-
-        displayWelcomeMessage();
+        this.targetNumber = random.nextInt(MAX - MIN + 1) + MIN;
     }
 
-    // Welcome message and rules
-    private void displayWelcomeMessage() {
-        System.out.println("Welcome to the Guessing Game!");
-        System.out.println("Rules:");
-        System.out.println("- Guess a number between " + MIN + " and " + MAX);
-        System.out.println("- Maximum attempts allowed: " + MAX_ATTEMPTS);
-        System.out.println("--------------------------------");
-    }
-
-    // Getter for target number
     public int getTargetNumber() {
         return targetNumber;
     }
 
-    // Getter for max attempts
     public int getMaxAttempts() {
         return MAX_ATTEMPTS;
     }
 
-    // Optional: main method to test
+    public int getMaxHints() {
+        return MAX_HINTS;
+    }
+
+    public void showRules() {
+        System.out.println("Guess a number between " + MIN + " and " + MAX);
+        System.out.println("You have " + MAX_ATTEMPTS + " attempts.");
+        System.out.println("Hints will be provided after wrong guesses.\n");
+    }
+}
+
+/**
+ * Application Entry Point
+ */
+public class GuessingApp {
+
     public static void main(String[] args) {
-        new GuessingApp(); // object creation triggers constructor
+        System.out.println("Welcome to the Guessing App");
+        GameConfig gameConfig = new GameConfig();
+        gameConfig.showRules();
     }
 }
